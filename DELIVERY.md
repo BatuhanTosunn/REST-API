@@ -13,7 +13,7 @@
 - Swagger Editor üzerinden test edilmiştir.
 
 ### 🔗 GitHub Repo Linki
-https://github.com/batuhanemretosun/university-library-api
+https://github.com/batuhanemretosun/REST-API
 
 ---
 
