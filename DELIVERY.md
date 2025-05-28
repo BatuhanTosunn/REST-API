@@ -3,7 +3,7 @@
 
 ## 👤 Öğrenci Bilgileri
 - **Ad Soyad**: Batuhan Emre Tosun
-- **Öğrenci Numarası**: 123456789
+- **Öğrenci Numarası**: 170422019
 
 ---
 
@@ -13,7 +13,7 @@
 - Swagger Editor üzerinden test edilmiştir.
 
 ### 🔗 GitHub Repo Linki
-https://github.com/batuhanemretosun/REST-API
+https://github.com/BatuhanTosunn/REST-API
 
 ---
 
