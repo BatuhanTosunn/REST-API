@@ -1,0 +1,134 @@
+openapi: 3.0.3
+info:
+  title: University Online Library API
+  description: REST API for managing books, students, and loan operations.
+  version: 1.0.0
+servers:
+  - url: https://university-library-api.edu/v1
+    description: Production server
+
+paths:
+  /books:
+    get:
+      tags: [Books]
+      summary: Get all books
+      description: Returns a list of books with pagination
+      parameters:
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+        - name: size
+          in: query
+          description: Number of items per page
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of books
+          content:
+            application/json:
+              example:
+                - id: "123e4567-e89b-12d3-a456-426614174000"
+                  title: "1984"
+                  author: "George Orwell"
+                  isbn: "9780451524935"
+                  publisher: "Signet Classics"
+                  pageCount: 328
+                  stock: 3
+        '500':
+          description: Server error
+
+    post:
+      tags: [Books]
+      summary: Add a new book
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '201':
+          description: Book created
+        '400':
+          description: Invalid request
+
+  /books/{id}:
+    get:
+      tags: [Books]
+      summary: Get book by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Book found
+        '404':
+          description: Book not found
+
+    put:
+      tags: [Books]
+      summary: Update book
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '200':
+          description: Book updated
+        '400':
+          description: Bad request
+        '404':
+          description: Book not found
+
+    delete:
+      tags: [Books]
+      summary: Delete book
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Book deleted
+        '404':
+          description: Book not found
+
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        author:
+          type: string
+        isbn:
+          type: string
+          pattern: '^(97(8|9))?\d{9}(\d|X)$'
+        publisher:
+          type: string
+        pageCount:
+          type: integer
+        stock:
+          type: integer
